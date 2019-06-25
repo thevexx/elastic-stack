@@ -43,6 +43,7 @@ services:
       - '/:/hostfs:ro'
     ports:
       - 5000:5000
+    user: root
     depends_on:
       - 'elasticsearch'
 
