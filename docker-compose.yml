@@ -41,8 +41,23 @@ services:
       - '/sys/fs/cgroup:/hostfs/sys/fs/cgroup:ro'
       - '/proc:/hostfs/proc:ro'
       - '/:/hostfs:ro'
-    ports:
-      - 5000:5000
+    # ports:
+      # - 5000:5000
+    user: root
+    depends_on:
+      - 'elasticsearch'
+
+  filebeat:
+    image: docker.elastic.co/beats/filebeat:7.2.0
+    environment:
+      - '-strict.perms=false'
+      - 'output.elasticsearch.hosts=["elasticsearch:9200"]'
+    volumes:
+      - './esconfig/filebeat.docker.yml:/usr/share/filebeat/filebeat.yml:ro'
+      - '/var/run/docker.sock:/var/run/docker.sock:ro'
+      - '/var/lib/docker/containers:/var/lib/docker/containers:ro'
+    # ports:
+      # - 5000:5000
     user: root
     depends_on:
       - 'elasticsearch'

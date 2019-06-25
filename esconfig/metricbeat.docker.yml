@@ -8,6 +8,12 @@ metricbeat.autodiscover:
   providers:
     - type: docker
       hints.enabled: true
+    - type: logstash
+      hints.enabled: true
+    - type: nginx
+      hints.enabled: true
+    - type: mongodb
+      hints.enabled: true
 
 metricbeat.modules:
 - module: docker
