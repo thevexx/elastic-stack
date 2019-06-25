@@ -31,6 +31,21 @@ services:
       - 'elasticsearch'
       - 'setup_logstash'
 
+  metricbeat:
+    image: docker.elastic.co/beats/metricbeat:7.2.0
+    environment:
+      - 'output.elasticsearch.hosts=["elasticsearch:9200"]'
+    volumes:
+      - './esconfig/metricbeat.docker.yml:/usr/share/metricbeat/metricbeat.yml:ro'
+      - '/var/run/docker.sock:/var/run/docker.sock:ro'
+      - '/sys/fs/cgroup:/hostfs/sys/fs/cgroup:ro'
+      - '/proc:/hostfs/proc:ro'
+      - '/:/hostfs:ro'
+    ports:
+      - 5000:5000
+    depends_on:
+      - 'elasticsearch'
+
   # Run a short-lived container to set up Logstash.
   setup_logstash:
     image: centos:7
@@ -51,3 +66,4 @@ services:
       - 'ELASTIC_PASSWORD=asdfgh'
     depends_on:
       - 'elasticsearch'
+
