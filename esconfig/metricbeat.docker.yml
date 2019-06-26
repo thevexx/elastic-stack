@@ -15,7 +15,6 @@ metricbeat.modules:
     hosts: ["http://nginxstatus.fivepoints.fr"]
   - module: logstash
     hosts: ["logstash:5000"]
-  - module: mongodb
   - module: docker
     metricsets:
       - "container"
