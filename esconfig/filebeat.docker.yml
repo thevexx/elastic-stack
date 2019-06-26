@@ -10,7 +10,13 @@ filebeat.autodiscover:
     
 filebeat.modules:
   - module: nginx
-  - module: mysql
+    access:
+      enabled: true
+      var.paths: ["/nginx/access.log*"]
+    error:
+      enabled: true
+      var.paths: ["/nginx/error.log*"]
+  # - module: mysql
   - module: system
 
 processors:
