@@ -7,8 +7,6 @@ filebeat.autodiscover:
   providers:
     - type: docker
       hints.enabled: true
-    - type: system
-      hints.enabled: true
     - type: nginx
       hints.enabled: true
     
