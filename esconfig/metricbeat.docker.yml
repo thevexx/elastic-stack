@@ -10,6 +10,9 @@ metricbeat.autodiscover:
       hints.enabled: true
 
 metricbeat.modules:
+  - module: nginx
+  - module: logstash
+  - module: mongodb
   - module: docker
     metricsets:
       - "container"
@@ -23,9 +26,7 @@ metricbeat.modules:
     hosts: ["unix:///var/run/docker.sock"]
     period: 10s
     enabled: true
-- module: nginx
-- module: logstash
-- module: mongodb
+
 
 
 processors:
