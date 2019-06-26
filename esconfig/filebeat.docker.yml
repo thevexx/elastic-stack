@@ -7,9 +7,11 @@ filebeat.autodiscover:
   providers:
     - type: docker
       hints.enabled: true
-    - type: nginx
-      hints.enabled: true
     
+filebeat.modules:
+  - module: nginx
+  - module: mysql
+  - module: system
 
 processors:
 - add_cloud_metadata: ~
