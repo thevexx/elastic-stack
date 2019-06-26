@@ -11,6 +11,8 @@ metricbeat.autodiscover:
 
 metricbeat.modules:
   - module: nginx
+    metricsets: ["stubstatus"]
+    hosts: ["http://nginxstatus.fivepoints.fr"]
   - module: logstash
     hosts: ["logstash:5000"]
   - module: mongodb
